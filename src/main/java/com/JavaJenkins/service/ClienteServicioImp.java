@@ -3,10 +3,12 @@ package com.JavaJenkins.service;
 import com.JavaJenkins.entidad.Cliente;
 import com.JavaJenkins.repositorio.ClienteRepositorio;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @RequiredArgsConstructor
+@Service
 public class ClienteServicioImp implements  ClienteServicio{
     private final ClienteRepositorio clienteRepositorio;
 
