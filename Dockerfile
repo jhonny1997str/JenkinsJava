@@ -1,5 +1,5 @@
 # Primera etapa: Compilación de la aplicación con Maven
-FROM maven:3.9.9-eclipse-temurin-21 AS build
+FROM maven:3.9.6-eclipse-temurin-22-jammy AS build
 
 # Define el directorio de trabajo
 WORKDIR /app
