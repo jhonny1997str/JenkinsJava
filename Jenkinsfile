@@ -21,7 +21,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Ejecutar pruebas con Maven
-                sh 'mvn test'
+                bat 'mvn test' // Cambiado a 'bat' para Windows
             }
         }
 
@@ -29,16 +29,16 @@ pipeline {
             steps {
                 script {
                     // Baja cualquier contenedor en ejecución para evitar conflictos
-                    sh 'docker-compose down'
+                    bat 'docker-compose down' // Cambiado a 'bat' para Windows
 
                     // Levanta la aplicación
-                    sh 'docker-compose up -d'
+                    bat 'docker-compose up -d' // Cambiado a 'bat' para Windows
 
                     // Esperar un poco para asegurarse de que el contenedor esté completamente levantado
                     sleep 10
 
                     // Verificar que el contenedor esté en ejecución
-                    sh 'docker ps'
+                    bat 'docker ps' // Cambiado a 'bat' para Windows
                 }
             }
         }
