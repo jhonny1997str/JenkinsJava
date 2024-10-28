@@ -4,29 +4,37 @@ package com.JavaJenkins.controlador;
 
 import com.JavaJenkins.entidad.Cliente;
 import com.JavaJenkins.repositorio.ClienteRepositorio;
+import com.JavaJenkins.service.ClienteServicio;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/clientes")
 public class ClienteControlador {
-    @Autowired
-    private ClienteRepositorio clienteRepositorio;
+    private final ClienteServicio clienteServicio;
+
 
     @GetMapping
-    public List<Cliente> listarClientes() {
-        return clienteRepositorio.findAll();
+    public List<Cliente> findAll() {
+        return clienteServicio.findAll();
     }
 
     @GetMapping("/{id}")
-    public Cliente obtenerId(@PathVariable Long id){
-        return clienteRepositorio.getById(id);
+    public Cliente findById(@PathVariable Long id){
+        return clienteServicio.findById(id);
     }
 
     @PostMapping
-    public Cliente agregarCliente(@RequestBody Cliente cliente) {
-        return clienteRepositorio.save(cliente);
+    public Cliente save(@RequestBody Cliente cliente) {
+        return clienteServicio.save(cliente);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        clienteServicio.delete(id);
+
     }
 }
