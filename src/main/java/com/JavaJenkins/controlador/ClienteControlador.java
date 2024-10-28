@@ -20,6 +20,11 @@ public class ClienteControlador {
         return clienteRepositorio.findAll();
     }
 
+    @GetMapping("/{id}")
+    public Cliente obtenerId(@PathVariable Long id){
+        return clienteRepositorio.getById(id);
+    }
+
     @PostMapping
     public Cliente agregarCliente(@RequestBody Cliente cliente) {
         return clienteRepositorio.save(cliente);
