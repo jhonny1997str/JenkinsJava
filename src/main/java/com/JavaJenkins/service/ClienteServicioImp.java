@@ -21,8 +21,9 @@ public class ClienteServicioImp implements  ClienteServicio{
 
     @Override
     public Cliente findById(Long id){
-        return  clienteRepositorio.findById(id).orElse(null);
+        return clienteRepositorio.findById(id).orElse(null);  // Retorna null si no se encuentra.
     }
+
 
     @Override
     public Cliente save(Cliente cliente){
