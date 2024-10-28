@@ -2,6 +2,13 @@ pipeline {
     agent any
 
     stages {
+        stage('Clone Repository') {
+            steps {
+                // Clonar el repositorio de Git
+                git branch: 'main', url: 'https://github.com/jhonny1997str/JenkinsJava.git'
+            }
+        }
+
         stage('Build') {
             steps {
                 script {
