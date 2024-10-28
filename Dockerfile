@@ -1,5 +1,5 @@
 # Primera etapa: Compilación de la aplicación con Maven
-FROM maven:3.8.6-openjdk-21 AS build
+FROM maven:3.9.9-eclipse-temurin-21 AS build
 
 # Define el directorio de trabajo
 WORKDIR /app
@@ -11,7 +11,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # Segunda etapa: Ejecución de la aplicación en una imagen más liviana de OpenJDK
-FROM openjdk:21-jdk-slim
+FROM eclipse-temurin:21-jdk-slim
 
 # Define el directorio de trabajo
 WORKDIR /app
@@ -21,3 +21,4 @@ COPY --from=build /app/target/JavaJenkins-0.0.1-SNAPSHOT.jar app.jar
 
 # Comando de entrada para ejecutar la aplicación
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
