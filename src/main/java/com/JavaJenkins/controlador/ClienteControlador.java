@@ -3,7 +3,6 @@ package com.JavaJenkins.controlador;
 
 
 import com.JavaJenkins.entidad.Cliente;
-import com.JavaJenkins.repositorio.ClienteRepositorio;
 import com.JavaJenkins.service.ClienteServicio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +40,13 @@ public class ClienteControlador {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id){
-        clienteServicio.delete(id);
-
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        try {
+            clienteServicio.delete(id);
+            return ResponseEntity.noContent().build();  // Devuelve 204 No Content
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();  // Devuelve 404 Not Found
+        }
     }
+
 }
